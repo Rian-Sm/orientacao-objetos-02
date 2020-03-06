@@ -6,6 +6,9 @@ public class Circulo {
     public void setRaio(Double raio){
         this.raio = raio;
     }
+    public Double getRaio(){
+        return raio;
+    }
     public Double CalcularArea(){
         return Math.PI * Math.pow(raio, 2);
     }
