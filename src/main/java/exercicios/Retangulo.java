@@ -7,7 +7,6 @@ public class Retangulo {
     public void setBase(Double base){
         this.base = base;
     }
-
     public void setAltura(Double altura) {
         this.altura = altura;
     }
