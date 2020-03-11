@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CirculoTeste {
+public class ContaTeste {
     private Conta pessoa1;
 
     @BeforeEach
@@ -57,7 +57,27 @@ public class CirculoTeste {
     }
     @Test
     public void metodoSacar(){
-        pessoa1.sacar();
+        pessoa1.sacar(250.0);
         assertEquals(250.0, pessoa1.getSaldo());
+    }@Test
+    public void metodoSacarLimite(){
+        pessoa1.sacar(600.0);
+        assertEquals(-100.0, pessoa1.getSaldo());
+    }
+    @Test
+    public void metodoSacarInvalido(){
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> pessoa1.sacar(-100.0)) ;
+        assertEquals("valor invalido", exception.getMessage());
+    }
+    @Test
+    public void metodoSacarSaldoInsuficiente(){
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> pessoa1.sacar(1525.0)) ;
+        assertEquals("passou dos limites", exception.getMessage());
+    }
+    @Test
+    public void metodoTransferir(){
+        Conta pessoa2 = new Conta();
+        pessoa1.transferir(pessoa2, 600.0);
+        assertEquals(600.0, pessoa2.getSaldo());
     }
 }
