@@ -15,12 +15,14 @@ public class Correntista {
     }
     public void depositar(Double valor){
         if (valor<=0)
-            throw new IllegalArgumentException("falha de processo");
+            throw new IllegalArgumentException("processo invalido");
         saldo += valor;
     }
     public void sacar(Double valor){
-        if (valor<=0 || valor>saldo )
-            throw new IllegalArgumentException("falha de processo");
+        if (valor<=0)
+            throw new IllegalArgumentException("processo invalido");
+        if(valor>saldo)
+            throw new IllegalArgumentException("saldo insuficiente");
         saldo -= valor;
     }
     public void transferir(Correntista correntista, Double valor){
